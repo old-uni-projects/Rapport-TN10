@@ -1,0 +1,176 @@
+\documentclass[12pt,a4paper,utf8x, combine]{report}
+\usepackage [french=nohyphenation]{hyphsubst}
+\usepackage [french]{babel}
+\usepackage{comment}
+
+% Pour pouvoir utiliser  les accents
+%\usepackage[combine]{ucs}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp, lmodern}
+\usepackage[textwidth=7.10in]{geometry}
+
+% Pour pouvoir inclure des images
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+
+% On définit le chemin par défaut des images 
+\graphicspath{{images/}}
+\usepackage[margin=10pt,font=small,labelfont=bf]{caption}
+
+\usepackage[colorlinks = true, linkcolor = blue, urlcolor  = blue, citecolor = blue, anchorcolor = blue, unicode]{hyperref}% Pour avoir de belles urls
+\usepackage {geometry}
+
+% Pour mettre du code source
+\usepackage {listings}
+% Pour pouvoir passer en paysage
+\usepackage{lscape}
+\usepackage[compact]{titlesec}
+\titlespacing{\chapter}{0pt}{-50pt}{240pt}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{20pt}{0pt}{0pt}
+% Pour pouvoir faire plusieurs colonnes
+\usepackage {multicol}
+% Pour créer un index
+\usepackage{makeidx}
+\usepackage{lastpage}
+\usepackage{amsmath}
+\usepackage{array}
+\makeindex
+
+% Pour les entetes de page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhf{}
+%\fancyheadoffset{\textwidth}
+
+\fancyhead[L]{\includegraphics[width=3cm]{valeo.jpg}}
+\fancyhead[R]{\includegraphics[width=3cm]{utc.jpg}}
+\fancyhead[C]{Rapport de stage TN09 - Jonathan DEKHTIAR\\}
+%\fancyfoot[C]{\chaptername~\thechapter\\}
+\fancyfoot[C]{\leftmark\\}
+\fancyfoot[R]{Page : \thepage /\pageref*{LastPage}\\}
+
+\fancypagestyle{plain}
+
+\setlength\headheight{3cm} 
+
+% Pour l'interligne de 1.5
+%\usepackage {setspace}
+% Pour les marges de la page
+\geometry{a4paper, top=2.5cm, bottom=3.5cm, left=1.5cm, right=1.5cm, marginparwidth=1.2cm}
+
+\parskip=20pt %% distance entre § (paragraphe)
+\sloppy %% respecter toujours la marge de droite 
+
+% Pour les pénalités :
+\interfootnotelinepenalty=150 %note de bas de page
+
+\widowpenalty=10000 % empeche au maximum la coupure avant la derniere ligne
+\clubpenalty=10000  % empeche au maximum la coupure apres la premiere ligne
+\raggedbottom   
+
+
+%Pour la longueur de l'indentation des paragraphes
+\setlength{\parindent}{0cm}
+
+\begingroup
+\makeatletter
+% Redefine the \chapter* header macro to remove vertical space
+\def\@makeschapterhead#1{%
+  %\vspace*{50\p@}% Remove the vertical space
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 1\p@
+  }}
+\def\@makechapterhead#1{%
+  %\vspace*{50\p@}% Remove the vertical space
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 1\p@
+  }}
+  
+\makeatother
+
+
+\begin{document}
+
+
+
+\input{couverture}
+\input{remerciements}
+
+\tableofcontents
+\listoffigures
+\clearpage
+
+% Pour avoir un interligne de 1,5
+%\begin{onehalfspace}
+
+\include{Intro}
+
+\include{Parties/Valeo}
+
+\include{Parties/Stage}
+
+\chapter{Le Cloud Computing}
+\input{Parties/Cloud/Cloud-1}
+\input{Parties/Cloud/Cloud-2}
+\clearpage
+
+\chapter{Cordys Process Factory}
+%https://www.tpfcloud.com/cordys/uc/webapps/onlinehelp/tasks/creating_an_application.htm#task_4424A9209E894BBE966E2963F1BCBED8
+\input{Parties/Cordys/Cordys-1}
+\input{Parties/Cordys/Cordys-2}
+\input{Parties/Cordys/Cordys-3}
+\clearpage
+
+\chapter{Un Système ERP : SAP}
+\input{Parties/SAP/SAP-1}
+\input{Parties/SAP/SAP-2}
+\input{Parties/SAP/SAP-3}
+\input{Parties/SAP/SAP-4}
+\input{Parties/SAP/SAP-5}
+\clearpage
+
+\include{Conclusion}
+
+% Pour finir l'interligne de 1,5
+%\end{onehalfspace}
+
+%----------------------------------------
+% Pour la bibliographie
+%----------------------------------------
+% Citer tous les ouvrages/références
+\nocite{*}
+% Trier par ordre d'apparition
+%bibliographystyle{unsrt}
+% Pour le style de la biblio
+%\bibliographystyle{plain}
+\bibliographystyle{ieeetr}
+% Ecrire la biblio ici
+\bibliography{biblio}
+%\bibliography{research} 
+
+\printindex
+
+\appendix
+
+\pagebreak
+
+\chapter*{Rédaction du Rapport en langage LaTeX}
+\markboth{Langage LaTeX}{}
+\addcontentsline{toc}{chapter}{Rédaction du Rapport en langage LaTeX}
+Ce rapport a été entièrement rédigé en \href{http://fr.wikipedia.org/wiki/LaTeX}{\textbf{LaTeX}}. 
+
+Les sources sont disponibles et téléchargeables sur Github à l'adresse suivante :\\
+\href{https://github.com/JonathanDekhtiar/Rapport-TN09}{\textbf{https://github.com/JonathanDekhtiar/Rapport-TN09}}. 
+
+\end{document}

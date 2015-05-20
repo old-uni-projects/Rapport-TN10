@@ -1,0 +1,114 @@
+\section{Explication du travail effectué}
+
+\subsection{Définition de l'objectif}
+
+Afin de mener à bien la migration de Comp@ssV2 à Comp@ssV4, il nous a donc été demandé de réaliser le nettoyage des données Clients et d'en effectuer la reprise pour Comp@ssV4.
+
+La reprise consiste à faire correspondre autant que possible les clients déjà codifiés par les autres sites dans le référentiel Client Groupe de Comp@ssV4. Pour les autres, nous serons tenus de les codifier en respectant les règles de codification afin de les intégrer dans le système.
+
+La problématique qui s'est donc posée à nous est la suivante:
+
+\textbf{``Comment réaliser une comparaison efficace entre les clients Comp@ssV2 de notre système et ceux du référentiel groupe déjà codifiés dans le nouveau système ?"}
+
+Effectivement, il est difficilement pensable de recouper et de comparer plus de 2500 clients de notre système avec les 6000 clients déjà existant dans le référentiel à la main.\\
+Il nous a donc fallu trouver un outil pour effectuer cette comparaison.
+
+\clearpage
+
+\subsection{L'algorithme de Ratcliff et Obershelp}
+
+Grâce à un cours sur la détection de la redondance des données que j'avais suivi en Erasmus à Vienne, j'ai pu proposer l'algorithme mis au point par \textbf{Ratcliff et Obershelp} sur la détection de séquence dans les chaines de caractères.
+
+Cet algorithme renvoie \textbf{un pourcentage de ressemblance} entre deux chaines de caractères qu'il reçoit en entrée.
+
+Cet algorithme permet de répondre à notre besoin pour les raisons suivantes:
+
+
+\begin{itemize}\itemsep7pt
+	\item Possibilité ``d'absorber" de faibles variations: Chaque site Valeo n'a pas forcément identifié l'adresse ou le nom complet du client de la même manière. Il est donc nécessaire d'établir une \textbf{marge d'erreur} lors de la reconnaissance automatique.
+	\item Algorithme de relativement faible compléxité: $N^2$.
+\end{itemize}
+
+\subsubsection{Principe de l'algorithme}
+
+L'algorithme de Ratcliff et Obershelp calcule la similarité entre deux chaines de caractères de la manière suivante:\\
+
+\textbf{2 * (nombre de caractères identiques) / (nombre de caractères dans les deux chaines)}
+
+Correspondance des caractères dans un premier temps de manière relative à leur position (\textit{le caractère 1 de la chaine 1 correspond-il au caractère 1 de la chaine 2 ?}), le tout sur la plus longue sous-séquence en commun (les chaines n'ont pas forcément la même taille). A cela s'ajoute de manière récursive la correspondance des caractères non associés toujours en cherchant la plus grande zone correspondante et le tout jusqu'à ce que plus aucune association ne soit possible.
+
+\textbf{Exemple:}
+
+La similarité entre ALE\textbf{X}ANDRE et ALE\textbf{KS}ANDER est égale à:
+
+
+\begin{tabular}{|>{\centering\arraybackslash}p{18cm}|}
+  \hline
+  ~\\
+  \textbf{2 * (3+3+1+1) / (9+10) = 0.84}  (Corresponds : \textbf{ALE} (3), \textbf{AND} (3), \textbf{E}(1), \textbf{R}(1))\\
+  ~\\
+  \hline
+\end{tabular}
+
+\clearpage
+
+\subsection{Objectifs de notre méthode}
+
+L'objectif est d'être capable de \textbf{détecter} une forte similarité entre deux clients. Mais il ne nous semblait pas judicieux de réaliser l'association de manière \textbf{automatique} pour des raisons de contrôle des données (l'impact d'une erreur est important car cela touche les clients de Valeo).
+
+Deux objectifs apparaissent donc:
+
+\subsubsection{Limiter les ``faux positifs"}
+
+Afin d'effectuer notre travail de manière efficace il est important d'effectuer un \textbf{tri}, entre les clients qui ne correspondent \textbf{pas}, ceux qui correspondent \textbf{un peu}, et ceux qui correspondent \textbf{beaucoup}.
+
+Par souci de temps, nous avons choisi de nous focaliser sur ceux qui ont un fort taux de ressemblance (avec la méthode précédemment expliquée).
+
+Il parait donc essentiel de limiter ce que nous appellerons un \textbf{faux positif}:
+Un faux positif c'est deux clients qui semblent identiques mais qui en réalité ne le sont pas (Exemple: Renault Toulouse et Renault Toulon).
+
+Nous devons donc définir un \textbf{seuil} de détection de manière à ne pas générer trop de pollution dans nos résultats.
+
+\subsubsection{Aucun ``faux négatif" ou presque}
+
+Encore plus gênant qu'un faux positif, nous avons le faux négatif. Cette fois ci nous avons deux clients identiques et malheureusement identifiés de manière trop différentes et le taux de ressemblance est en dessous de notre seuil de détection. Conséquence: Nous perdons une association et ce client sera donc recodifié, ce qui va à l'encontre du principe même du projet (limiter le nombre de client et une codification unique pour un même client au sein de tout Valeo).
+
+\subsection{La problématique du seuil de détection}
+
+Nous avons effectué de nombreux tests afin de déterminer quel était le \textbf{meilleur} seuil de détection afin de ne pas générer trop de pollution (faux positifs) et surtout de ne rater aucune correspondance ou presque (faux négatifs).
+
+\textbf{Suite aux tests effectués nous en avons déterminer le seuil de : 60\%}
+
+\subsection{Principe de l'outil que nous avons développé}
+
+Afin de répondre au besoin, nous avons donc établi un outil permettant de recouper les clients V2 avec les clients V4.
+
+Cet outil cherche à réaliser des paquets de clients V2 et V4 ayant une forte ressemblance. Ces paquets sont constitués dans un fichier excel tierce qui pourra être utilisé comme fichier de travail. Le fichier des clients extrait reste inchangé pour des raisons de corruption de données en cas d'erreur de manipulation.
+
+Cet outil a été développé par mes soins en VBA et implémenté sous forme de macro \textbf{instable} dans Excel par le biais du fichier spécialisé excel : \textbf{*.xla}.
+
+\textbf{Voici un bref descriptif de son fonctionnement :}
+
+\begin{enumerate}
+	\item Génération de la clé de comparaison par concaténation des champs \textbf{importants} dans notre analyse : \textit{nom, ville, adresse}
+	\item Réalisation d'une boucle x $\in$ V4 qui analyse la ressemblance entre y $\in$ V2 et x. 
+	\item Si ressemblance (x,y) > 60 \% $\rightarrow$ Constitution d'un paquet dans le fichier excel de sortie.
+	\item A chaque fois que l'outil trouve une ressemblance entre V2 et V4, il procède également à l'analyse de V4 par rapport à V4. Cela permet de balayer dans les deux sens la liste des clients et de constituer des paquet plus cohérent et non des associations 1:1.
+\end{enumerate}
+
+\subsection{Les principales difficultés que j'ai rencontrées}
+
+Je ne connaissais pas le VBA et ce ne fut pas forcément aisé d'obtenir le résultat escompté immédiatement voir même de \textit{débugguer} ...
+
+De plus la structure de l'algorithme n'étant pas simple, j'ai dû passer beaucoup de temps en phase de conception afin d'obtenir le schéma le plus efficace et fonctionnel possible.
+
+Le langage VBA, celui des macros excel, n'est pas forcément très rapide. Les accès mémoire et encore plus les écritures ne se font pas rapidement. Ainsi après réalisation de la macro j'ai procédé à une longue phase de recherche et d'optimisation sur la rapidité des différentes fonctions pour effectuer certaines tâches. J'ai divisé le temps d'éxécution par un facteur 3. Et malgré tout l'exécution a tout de même durée près de deux heures et demi.
+
+\clearpage
+
+\subsection{Quel futur pour cet outil}
+A ma grande surprise, l'outil mis en place intéresserait les responsables du projet au niveau Groupe. Il m'a été demandé de leur faire une présentation de l'outil à la fois dans le principe et dans l'utilisation.
+
+Il m'a été demandé en ce sens de le modifier afin qu'il soit \textbf{industrialisable} et  \textbf{utilisable par un non informaticien}: comprendre sans modification du code.
+
+Cette nouvelle a récompensé les efforts que l'équipe a pu mettre dans le projet et permet de mettre un point final, pour ma part, sur ce projet au regard de l'échéance de mon stage.
