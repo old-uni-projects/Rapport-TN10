@@ -1,0 +1,42 @@
+\chapter{METIS, un projet de recherche}
+
+\section{Description du Projet de Recherche}
+
+\textbf{Source : \url{http://metis.deltacad.fr/}}
+
+Le projet \textbf{METIS} est un projet de recherche collaboratif impliquant deux industriels (\textbf{DeltaCAD} et \textbf{IFPEN}) et 4 laboratoires universitaires (\textbf{AMPT}, \textbf{ECN}, \textbf{UTC} et \textbf{UTT}). Ce projet est prévu pour durée de 3 ans et a débuté en octobre 2012. Le projet est subventionné par l'\textbf{ANR}, Agence Nationale de la Recherche (\url{http://www.agence-nationale-recherche.fr/}), dans le cadre du programme \textit{Modèle Numérique 2012}.
+
+Ce projet s’intègre dans le domaine de la rétro-conception (ou \textit{Reverse Engineering} en anglais).
+ 
+Aujourd’hui, la rétro-conception est largement utilisée dans l’industrie manufacturière afin de capitaliser des connaissances qui ne l’ont pas été jusque-là et qui deviennent aujourd’hui cruciales pour faire évoluer ses produits.
+Les applications sont diverses, comme par exemple, la rétro-conception de produits existants en vue d’en modifier/combiner des composantes (cas d’IFP Energies nouvelles par exemple, qui fait de la rétro-conception de moteurs) ou alors la maintenance des produits mécaniques à très longue durée de vie (avions, navires, centrales nucléaires, plateformes pétrolières, trains…), lorsqu’il faut reconcevoir et refabriquer un composant autrefois produit soit en interne mais dont le personnel a quitté la société ou soit par un sous-traitant aujourd’hui disparu.
+                                
+De manière générale, les solutions commerciales présentes actuellement sur le marché proposent d’extraire les informations géométriques de l’objet afin de le reconcevoir (RAPIDFORM XOR d’Inus Technology par exemple).
+Il existe également dans la littérature scientifique des approches traitant de la rétro-conception de composants ou de petits ensembles. Dans ce cas, la géométrie de l’objet est souvent obtenue par numérisation 3D ou mesure. La surface de l’objet est ainsi échantillonnée par un nuage de points et/ou un maillage surfacique. Aujourd’hui, c’est l’analyse de cette géométrie à travers un filtre de connaissances métier qui permet de retrouver les intentions initiales de conception et d’en assurer la rétro-conception.
+ 
+Le projet \textbf{METIS} vise, quant à lui, à proposer des solutions pour la rétro-conception de grands ensembles mécaniques complexes (par le nombre de pièces et/ou leur taille) tels que des moteurs, des véhicules (ces problématiques étant au cœur des travaux d’IFP Energies nouvelles) par exemple. Dans le cadre de ces ensembles, il est délicat et peu efficace de numériser intégralement la géométrie. Par exemple, pour une automobile, relever le nuage de points de l’ensemble des pièces qui la composent serait, sinon impossible, extrêmement fastidieux. En effet, il faudrait, pour cela, démonter l’intégralité de la voiture et numériser les pièces une à une, manuellement : les systèmes de numérisation 3D automatiques de pièces dont on ne possède pas la CAO (impossibilité de faire une gamme automatique) sont très limités dès qu’il s’agit de pièces de formes complexes, la numérisation des pièces de la voiture devrait donc se faire majoritairement manuellement.
+ 
+L’hypothèse principale portée par le projet \textbf{METIS} est que, pour la rétro-conception d’un grand ensemble mécanique complexe, les informations purement géométriques sont insuffisantes. METIS vise à proposer une solution pour intégrer l’ensemble des informations (y compris les informations géométriques) disponibles sur l’ensemble mécanique étudié afin de les traiter et d’en extraire une maquette numérique.
+ 
+Il s’agit donc de développer des méthodologies ainsi que les outils associés qui permettront à un utilisateur de créer et maintenir dans le temps une maquette numérique sémantiquement riche et intégrant les connaissances liées à l’ensemble mécanique considéré. Cette maquette sera obtenue à partir d’informations hétérogènes, parfois incomplètes, telles que des images, des plans 2D, des nuages de points issus de numérisations 3D, des croquis, des photographies, des rapports de maintenance, des résultats de calculs…, voire même une ancienne version de la maquette numérique.
+
+\section{Contexte scientifique}
+
+L’objectif de METIS est de permettre la création ou la mise à jour de la maquette numérique d’un ensemble mécanique complexe existant (ex : un moteur). A partir du grand ensemble de données hétérogènes et d’une bibliothèque de composants appartenant à un domaine (composants mécaniques, mobilier, tubes, outillages, architecture), l’outil METIS permettra de déterminer automatiquement le type et le nombre de composants présents dans un ensemble mécanique complexe. Il permettra aussi de déterminer la position et l’orientation de chaque composant. Une fois que l’intégralité de la nomenclature du produit aura été déterminée et qu’une matrice de position aura été associée à chacun des composants de cette nomenclature, l’outil METIS permettra de générer la maquette numérique de ce grand ensemble mécanique. Les fonctions principales de cet environnement de rétro-conception sont les suivantes :
+
+
+\begin{enumerate}
+  \item Acquisition, traitement et intégration de grand volume de données, géométriques ou non, spatialement localisées : les données recueillies seront d’une telle hétérogénéité (nuages de points 3D, photographie, référence catalogue, résultats de calcul, schémas de maintenance, ancienne version de la maquette numérique etc.) qu’il faudra développer une méthodologie de triage et de mise en correspondance et de référencement innovante. Nous pourrons proposer des méta-modèles basés sur des évolutions des formalismes de cartes cognitives, de réseaux sémantiques par exemple. \\
+  
+  \item Méthode d’identification de composants métier dans un ensemble de données hétérogènes : il s’agira de créer d’une bibliothèque de composants caractérisés par des éléments clés (signature) permettant leur identification dans un grand volume de données. L’apport scientifique est  ici de trouver un moyen de « signer » des composants complexes et de stocker ces signatures. Elles seront établies en géométrie 2D (photographie, plan, croquis), en géométrie 3D (nuage de points) et sous toute autre forme qui pourrait être pertinente (signatures non géométriques). Cette bibliothèque permettra d’identifier, dans les données acquises précédemment, des éléments de maquette numérique associés à une signature particulière.\\
+  
+\clearpage
+
+  \item Recherche, dans le grand volume de données, de la nomenclature du produit étudié ainsi que des matrices de position associées : dés qu’un composant est reconnu (identification de sa signature), le premier apport scientifique sera de le caractériser dans ses dimensions, sa position, son orientation etc. à l’aide de données géométriques et non géométriques recueillies directement dans l’ensemble de données mais aussi à l’aide de connaissances connues a priori sur le composant (ex : dépouilles si composant forgé etc.). Le second apport scientifique sera la gestion des différents niveaux de décomposition systémique lors du déroulement de METIS. En effet, l’analyse de rétro-conception peut aussi bien porter sur un système complet (ex : voiture), un sous-système (ex : ensemble moteur) ou un composant élémentaire (ex : alternateur). Les signatures et leur reconnaissance devront alors être modélisées et gérées dans ces différents niveaux systémiques qui doivent rester cohérent au fil du temps et selon la granularité de l’analyse.\\
+  
+  \item Génération ou modification de la maquette numérique : dés la nomenclature connue, les modèles CAO paramétrés métier associés aux différents composants pourront être :
+assemblés au sein du modèle géométrique du grand ensemble étudié.
+modifiés par corrélation des modèles géométriques originels et des nouveaux paramètres géométriques identifiés ou par échanges d’une partie des composants de la maquette numérique originelle. L’apport scientifique réside dans la mise en œuvre d’algorithmes et de stratégies relatifs à la manipulation de la maquette numérique soit pour la gestion de la nomenclature (ex : filtre de composants, etc.) soit pour la gestion des éléments géométriques eux-mêmes (ex : déformation, ajout sémantique, dimensionnement, etc\ldots).\\
+\end{enumerate}
+
+\clearpage

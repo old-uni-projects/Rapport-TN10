@@ -1,42 +1,19 @@
 \chapter{Présentation du Sujet de Stage}
 
-\section{Présentation du sujet de stage}
-	\textbf{Sujet :}
+	\textbf{Titre du stage :}
 	
-	Développement d'un systeme workflow en cloud computing. Accompagnement d'un audit de sécurité
+	Implémentation d’algorithmes de reconnaissances de formes mécaniques dans plusieurs nuages de points issus de numérisation.
 	
 	\textbf{Description :}
 	
-Deux parties composent le stage :
+Dans le cadre d’un laboratoire commun entre la société DeltaCAD et l’université de Technologie de Compiègne nommé \textbf{DiMEXP} (\url{https://dimexp.utc.fr/}) – \textit{\textbf{Di}gital \textbf{M}ock-up for \textbf{M}ulti-\textbf{EXP}ertise Integration}, une équipe de chercheurs et ingénieurs R\&D travaillent sur l’intégration de données hétérogènes au sein de maquettes numériques de grands ensembles. 
 
-Au sein du centre de service partagés d'Annemasse composé de 5 sites (Abbeville, Mondeville, Créteil, Ben Arous, Annemasse), le développement d'un ensemble d'applications sous deux environnements en cloud computing (Google Apps et google script, et Cordys). \\
-Pour cette partie, les objectifs sont : 
-\begin{enumerate}
-	\item Déployer un plan d'action pour qualifier, planifier, développer et mettre en production un ensemble d'applications intégrant du workflow sur un environnement Cordys (processus de gestion de workflow)
-	\item Utiliser et développer les évolutions des modèles de Google Site et Google Scripts sur un parc applicatifs existant
-	\item Planifier et ordonnancer les lancements de mise en productions avec les Business Owners
-\end{enumerate}
-\vspace{6mm}
+Il s'agira d'intervenir sur de nouveaux modules et fonctionalités pour les suites logicielles développées par \textbf{DeltaCAD} qui visent le domaine de la préparation de maquettes numériques dans les différentes étapes du cycle de vie des produits (par exemple pour faciliter l’utilisation de gros modèles 3D en aéronautique, nautique, automobile, ...). 
 
-Au sein du site d'Annemasse, aider à la préparation d'un audit de sécurité informatique du site organisé par le Groupe.
-Pour cette partie, les objectifs sont :
-\begin{enumerate}
-	\item Le développement de scripts de contrôle au niveau du réseau
-	\item La préparation d'une documentation
-	\item L'accompagnement dans le projet dans les démarches sécuritaires (opérations techniques, et communications aux users)
-\end{enumerate}
-\vspace{6mm}
+Il faudra notamment, développer et implémenter des algorithmes ciblant la recherche de composants mécaniques dans un ensemble de données de nature hétérogène comme les nuages de points issus de scan 3D, des images issues de photogrammétries et des modèles CAO. Le concept de \textit{signature de composant mécaniques} se positionne comme élément central du développement. 
 
-L'ensemble des actions menées durant le stage devront être réalisées dans une démarche industrielle devant respecter les contraintes Coûts /Qualité / Délais. 
+Dans le cadre de DIMEXP, quelques signatures ont pu déjà être mise au point basées sur des facteurs tel que la compacité, ou les \textit{reeb–graphs} ou encore les \textit{precedence-graphs}. La finalité est de pouvoir tester ces signatures et obtenir une reconnaissance statistique des formes mécaniques (de type automobile et aéronautique) sur des données 2D et 3D de grande dimension. Cette reconnaissance permettra \textit{in fine} d’élaborer une nomenclature (nombre d’apparition dans les nuages de points et maquette numérique du composant). La robustesse et les temps de calculs seront également à prendre en compte pour l’implémentation.
 
-Des qualités de communication sont requises (français maîtrisé/ anglais parlé) car les contacts avec la Direction sont fréquents. Des déplacements pourront être envisagés dans le cadre du stage. 
-
-
-\section{Fiche de Poste}
- \begin{figure}[H]
-    \centering
-    \includegraphics[height=22cm]{job_profil.jpg}
-	\caption{Fiche de poste}\label{image.jobprofil} 
-\end{figure} 
+Une attention particulière sera apportée à la construction d'une base de connaissances à partir de données hétérogènes fournies (photographies, imagerie 3D, nuages de points, modèle CAO, ...). Cette base de connaissances vous servira pour élaborer un algorithme d'apprentissage supervisé de reconnaissance d'objets mécaniques.
 
 \clearpage
