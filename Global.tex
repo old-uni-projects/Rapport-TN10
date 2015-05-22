@@ -1,6 +1,5 @@
 \documentclass[12pt,a4paper,utf8x, combine]{report}
-%\usepackage [french=nohyphenation]{hyphsubst}
-\usepackage [french]{babel}
+\usepackage [english,frenchb]{babel} 
 \usepackage{comment}
 
 % Pour pouvoir utiliser  les accents
@@ -100,6 +99,7 @@
   
 \makeatother
 
+\bibliographystyle{IEEEtran}
 
 \begin{document}
 
@@ -151,16 +151,8 @@
 %----------------------------------------
 % Citer tous les ouvrages/références
 \nocite{*}
-% Trier par ordre d'apparition
-%bibliographystyle{unsrt}
-% Pour le style de la biblio
-%\bibliographystyle{plain}
-\bibliographystyle{ieeetr}
-%\bibliographystyle{IEEEtran}
-%\bibliography{IEEEabrv,biblio}
-% Ecrire la biblio ici
-\bibliography{biblio}
-%\bibliography{research} 
+
+\bibliography{IEEEabrv,biblio}
 
 \printindex
 
