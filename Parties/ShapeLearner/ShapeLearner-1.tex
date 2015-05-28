@@ -1,7 +1,13 @@
-\section{Un système ERP : SAP}
+\section{ShapeLearner - Un plugin de signature}
 
-%http://dspace.bracu.ac.bd/bitstream/handle/10361/1559/U2K2%20Project%20and%20SAP%20Execution.pdf?sequence=1
-%
+METIS, en plus d'être un projet de recherche est également le nom du logiciel qui lui est associé. Ce dernier est programmé en JAVA. Il propose une interface à laquelle on peut venir adjoindre de multiples plugins de \textbf{signature}.
+
+Ces derniers se doivent de répondre aux spécifications suivantes :
+\begin{itemize}
+	\item Être compilé sous forme d'une librairie DLL.
+	\item Exposer une fonction de signature en contexte : \textit{Signature SignInContext(Context);}
+	\item Exposer une fonction de comparaison en contexte : \textit{Output MatchInContext(Signature, Context);}
+\end{itemize}
 
 \subsection{SAP, vue d'ensemble}
 
