@@ -42,4 +42,5 @@ cleanup.sh
 docs/*
 !SAP_AllTransactionCode.pdf
 !couverture.pdf
-!Photoshop/Poster TN10_low Res.pdf
+!Photoshop/Poster TN10.pdf
+!Photoshop/Poster TN10-with margins.pdf
