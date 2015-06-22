@@ -3,11 +3,11 @@
 Afin d'analyser et classifier des images 2D ou imageries 3D, il est primordial d'être capable d'extraire de ces dernières un ensemble d'informations ou "\textit{features}" qui décrivent au mieux et nous renseigne sur la nature de celle-ci.\\
 On pourrait citer par exemple des critères comme la taille de la boite englobante (en anglais : \textit{bounding box}), ou encore le volume de la forme pour une pièce mécanique en 3D, en passant par la surface de cette dernière. Le critères isopérimétrique (mesure de compacité) est un excellent exemple de facteur classifiant. Il permet de discriminer, avec une bonne précision, différentes pièces mécaniques à partir de modèle 3D [M. Bruneau et al]~\cite{Bruneau2014}.
 
-Dans le cadre de ce stage, nous nous focaliserons sur :\\
+Dans le cadre de ce stage,\\
 \begin{itemize}
 	\item	L'accent sera porté sur une analyse d'\textbf{images en 2D}.\\
 	\item	Nous cherchons à rétro-concevoir de grands ensembles mécaniques, une attention à la gestion de \textbf{grands volumes de données} doit être apportée durant tout le déroulement du projet.\\
-	\item	Mettre en place une \textbf{méthode d'extraction} de descripteurs d'un fichier image (en anglais : \textit{Feature Extractor}).\\
+	\item	Mettre en place une \textbf{méthode d'extraction de descripteurs} d'un fichier image (en anglais : \textit{Feature Extractor}).\\
 	\item	Cette \textbf{méthode} d'extraction doit être \textbf{automatisable}. Il n'est pas envisageable, dans le cadre de notre étude, de venir renseigner à la main chacun de ces descripteurs.	
 \end{itemize}
 \vspace{3mm}
@@ -48,7 +48,7 @@ Il apparait que l'algorithme SURF manque de précision et vient \textit{accroche
 \clearpage
 \subsection{Tests préliminaires sur le fonctionnement des Shock Graphs}
 
-Suite à mes recherches bibliographiques, j'ai pu mettre en évidence les travaux sur les Shock Graphs. Ce sont des graphs qui décrivent une forme binaire 2D (Blanche ou Noire, pas de gris) par le biais d'un \textit{squelette} ou \textit{axe médian de Blum}. Leur fonctionnement et leur utilisation est décrite par [K. Siddiqi et al]~\cite{Siddiqi1999}. Un démonstrateur scientifique et une méthode de comparaison de ces graphs a été mise au point par [D. Macrini et al]~\cite{Macrini2002} dans le cadre de son mémoire de master.
+Suite à mes recherches bibliographiques, j'ai pu mettre en évidence les travaux sur les Shock Graphs. Ce sont des graphs qui décrivent une forme binaire 2D (Blanche ou Noire, pas de gris) par le biais d'un \textit{squelette} ou \textit{axe médian de Blum}. Leur fonctionnement et leur utilisation est décrite par [K. Siddiqi et al]~\cite{Siddiqi1999}. Un démonstrateur scientifique ainsi qu'une méthode de comparaison de ces graphs a été mise au point par [D. Macrini et al]~\cite{Macrini2002} dans le cadre de son mémoire de master.
 
 À partir de ces travaux, j'ai pu mettre sur pied assez rapidement un test mettant en évidence la pertinence de la méthode relative à notre usage. Et je dois bien admettre avoir été bluffé par la précision de cette méthode. Sentiment qui semble avoir partagé autour de moi.
 

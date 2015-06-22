@@ -9,16 +9,13 @@ Ces derniers se doivent de répondre aux spécifications suivantes :
 	\item Exposer une fonction de comparaison en contexte : \textit{Output MatchInContext(Signature, Context);}
 \end{itemize}
 
-\subsection{SAP, vue d'ensemble}
+\subsection{Le plugin C++ ShapeLearner}
 
-SAP est un ERP (\emph{Enterprise Resource Planning} ou en français :  \textbf{Planification des Ressources de l'Entreprise}) développé par la société éponyme. Ce sigle signifie :\textbf{Systems, Applications, and Products for data processing}.
+En se basant sur le travail effectué par D. Macrini et al.~\cite{Macrini2002}, nous avons décidé d'adapter le démonstrateur fonctionnel à nos besoins. En effet ce dernier a été publié sous licence Open Source, et a été entièrement programmé en C++.
 
-SAP est un puissant outil qui intègre de multiples Business Process et Fonctions en un seul système unifié. Fonctionnant sur une architecture Client / Serveur classique, chaque utilisateur (disposant des droits nécessaire) peut facilement gérer et tracer les ventes, la production, les finances de l'entreprise et les ressources humaines en temps réel. 
+Dans le soucis de faciliter l'intégration du démonstrateur à notre plugin, nous avons fais le choix d'utiliser nous aussi le langage C++.
 
-SAP est un système modulaire qui se compose de plusieurs parties. Chacune de ces parties peut elle même se diviser en plusieurs sous modules de fonction spécifique.
-Tous les modules SAP sont cependant inter-connectés via une base de données centralisée qui connecte et recoupe les différents aspects et les différentes données de l'entreprise.
-
-Pour n'en citer que quelques exemples, voici les quelques modules utilisés chez Valeo:
+\subsubsection{L'architecture logicielle}
 
 \begin{itemize}
 	\item \textbf{Module MM: }``Material Management" est le module logistique de SAP. Il gère les stocks, et les mouvements de stocks : entrées, sorties, et transferts.
