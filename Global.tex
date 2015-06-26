@@ -16,6 +16,8 @@
 \usepackage{pdfpages}
 \usepackage{filecontents}
 
+
+
 % On définit le chemin par défaut des images 
 \graphicspath{{images/}}
 \usepackage[margin=10pt,font=small,labelfont=bf]{caption}
@@ -103,6 +105,16 @@
 
 \begin{document}
 
+\makeatletter
+\renewcommand{\@chapapp}{}% Not necessary...
+\newenvironment{chapquote}[2][2em]
+  {\setlength{\@tempdima}{#1}%
+   \def\chapquote@author{#2}%
+   \parshape 1 \@tempdima \dimexpr\textwidth-2\@tempdima\relax%
+   \itshape}
+  {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+\makeatother
+
 \input{couverture}
 \input{remerciements}
 
@@ -134,12 +146,7 @@
 \clearpage
 
 \chapter{Shape Learner - Plugin METIS}
-\input{Parties/ShapeLearner/ShapeLearner-1}
-\input{Parties/ShapeLearner/ShapeLearner-2}
-\input{Parties/ShapeLearner/ShapeLearner-3}
-\input{Parties/ShapeLearner/ShapeLearner-4}
-\input{Parties/ShapeLearner/ShapeLearner-5}
-\clearpage
+\input{Parties/ShapeLearner}
 
 \include{Conclusion}
 
