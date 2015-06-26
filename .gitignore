@@ -40,7 +40,7 @@ cleanup.sh
 *.mp
 *.bak
 docs/*
-!SAP_AllTransactionCode.pdf
+!Rapport de Stage TN10 - Jonathan DEKHTIAR.pdf
 !couverture.pdf
 !Photoshop/Poster TN10.pdf
 !Photoshop/Poster TN10-with margins.pdf
