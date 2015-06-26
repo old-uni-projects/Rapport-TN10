@@ -79,34 +79,48 @@ J'ai créé donc pour le test un jeu de données d'apprentissage et un jeu de te
 
 \subsection{Principe de fonctionnement des Shock Graphs.}
 
-Lotus Notes (solution logicielle développée par \textbf{IBM}) et Cordys Process Factory (solution Cloud développée \textbf{Open~Text}) ont un objectif commun : proposer une réponse au  besoin de ``\textit{Business Processing}" au sein d'une entreprise.
+\subsubsection{L'axe Médian de Blum}
 
-Cependant elles diffèrent sur l'architecture (serveurs et réseau) nécessaire à son fonctionnement :
+L'axe médian de Blum est une méthode permettant de représenter la forme d'un objet en trouvant son squelette topologique.
+
+On obtient ainsi un ensemble de \textbf{courbes connectées} entre elles. Pour information la fonction bwmorph('skel') dans Matlab permet de l'obtenir.
+
+Cette méthode présente tout de même quelques problèmes :
+\begin{itemize}
+	\item De petits changements dans la forme peuvent avoir un fort impact sur le squelette final.
+	\item La réaction est non prévisible en cas d'occlusion d'une partie de la forme.
+\end{itemize}
+\vspace{8mm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=10cm]{skelitization.png}
+	\caption{Illustration du résultat d'un algorithme calculant \textbf{l'axe Median de Blum}.}\label{image.skel} 
+\end{figure}
+
+\subsubsection{La grammaire des shockGraphs}
+
+
+K. Siddiqi et al~\cite{Siddiqi1999} ont remarqué la forte ressemblance entre l'axe Median de Blum et la structure d'un graph. De plus ce squelette semble être tout à fait caractéristique d'une forme définie. Qui n'a d'ailleurs jamais schématiser un Homme à la manière présentée sur l'image ci-dessus ? 
+
+Ils ont mis au point un processus pour générer un graph qu'ils ont appelé \textbf{ShockGraph} à partir de courbes connectées.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=10cm]{Node.png}
+	\caption{4 Types de Noeuds existent afin de générer un ShockGraph.}\label{image.skel} 
+\end{figure}
 
 \begin{itemize}
-		\item Lotus Notes se base sur une architecture type logiciel Client / logiciel Serveur, les serveurs sont inter-connectés entre eux et ``\textit{répliquent}" certaines de leur données à intervalle de temps régulier. Ce fonctionnement est coûteux , il demande une infrastructure imposante ainsi qu'une administration au jour le jour. \\
-		Plus gênant, comme il est difficile d'avoir une vue d'ensemble du système actuel, la quantité d'application dupliquée ne cesse d'augmenter, ce qui induit des coûts de fonctionnement de plus en plus élevés.\\
+	\item \textbf{Vertices} : V = \{1,..., n\} \\
+	
+	\item \textbf{Edges} (i, j) ∈ E ⊆ V × V \\
+	Dirigée de i => j, si et seulement si i ≠ j , i \& j sont connectés dans le squelette.\\
+	
+	\item \textbf{Labels} $\gamma$ : V → l, avec l ∈ \{1, 2, 3, 4, n-2, \#, $\Phi$\}\\
+	Avec: \#: Start Symbol \&\& $\Phi$ : Terminal Symbol.\\
+	
+	\item \textbf{Topology} : ∀ j ∈ V avec $\gamma$ (j) ≠ \#, ∃i ∈ V avec (i, j) ∈ E : Si j n’est pas racine alors il a au moins un antécédant.
 
-	\item Cordys Process Factory propose une réponse orientée ``\textit{Cloud Computing}" à ces problématiques, nous pouvons donc faire \textit{abstraction} de l'architecture réseau et serveur nécessaire à son fonctionnement (gérée par le fournisseur du service). La plateforme est accessible via un navigateur web, nul besoin de paramétrer son ordinateur ou d'installer un quelconque logiciel.\\
-	Le choix de Cordys Process Factory est donc cohérent avec la politique actuelle du groupe Valeo qui cherche à \emph{externaliser} la gestion de la partie infrastructure et l'administration des diverses solutions informatiques.\\
-	\end{itemize}
-
-
-Valeo a fait le choix de se baser en grande partie sur la suite Google Apps pour un maximum de services et besoins bureautiques. Ainsi nous utilisons de manière non exclusive: 
-
-	\begin{itemize}
-		\item Gmail
-		\item Google Drive
-		\item Google Apps (SpreadSheet, Docs, Presentation, Scripts, Sites)
-		\item Google Agenda 
-		\item Google AppEngine
-	\end{itemize}
-
-En complément nous utilisons un LDAP, commun à tous les sites Valeo du monde, interfacé avec la suite applicative de \textbf{Google}. Valeo appelle cet ensemble de systèmes inter-opérants  : VeGA \textit{(Valeo empowered by Google Apps)}.
-
-\textbf{Et \textit{Cordys Process Factory} dans tout ça ?}
-
-Fort de sa position de partenaire \emph{Google Entreprise}, Cordys Process Factory permet une inter-connection aux services Google Apps  et le LDAP de Valeo : \textit{l'Entreprise Directory}.\\
-Ainsi les \textit{Businness Process} et \textit{Businness Workflows} peuvent s'appuyer sur les services et applications déjà en place chez Valeo afin de réduire les coûts de mise en place et de développement.
+\end{itemize}
 
 \clearpage
