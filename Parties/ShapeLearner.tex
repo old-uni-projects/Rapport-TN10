@@ -68,8 +68,8 @@ Les relations d'interdépendance sont donc à limiter autant que possible. Cepen
 
  \begin{figure}[H]
     \centering
-    \includegraphics[angle=90,origin=c,height=19.5cm]{ShapeLearner_UML.jpg}
-	\caption{Diagramme UML présentant le principe de l'architecture du module GraphDBLib}\label{image.UMLGraphDBLib} 
+    \includegraphics[angle=90,origin=c,height=19cm]{ShapeLearner_UML.jpg}
+	\caption{Diagramme UML simplifié présentant le principe de l'architecture du module GraphDBLib\-. Il a pour objectif d'expliquer de manière simple les interactions possibles au sein du module GraphDBLib. La totalité des liens, relations et associations n'est donc pas représentée.}\label{image.UMLGraphDBLib} 
 \end{figure}
 
 \subsection{Portage sur le cloud Amazon : AWS}
@@ -78,7 +78,6 @@ Les relations d'interdépendance sont donc à limiter autant que possible. Cepen
 
 Le plugin est plutôt intensif en calcul, ajoutons à cela les nombreuses interactions avec la base de données. Cela donne un résultat manquant de souplesse, fortement dépendant de la qualité du réseau de l'utilisateur et de la puissance de la machine hôte.\\
 J'ai eu l'occasion, pendant ce stage, de tester les nombreuses opportunités offertes par le \textbf{cloud Amazon : AWS}.
-
 J'ai ainsi standardisé le processus d'installation et automatisé la majeure partie. Le front-end de l'application a été codé en Python, j'ai choisi d'utiliser le framework web : Bottle.py (\url{http://bottlepy.org/}) afin d'exposer l'ensemble des fonctionnalités du plugin via une interface de type API RESTful.
 
 Le cloud Amazon permet de lancer de manière automatique suffisamment d'instances identiquement paramétrées afin de supporter la charge sur l'application. Un \textit{load-balancer} permet de répartir les demandes à travers les différentes instances actives.
